@@ -25,3 +25,32 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+`En este proyecto utilizamos`
+
+
+const rutas :Routes=[ //We need inyect into app.Component.html  => <router-outlet></router-outlet>
+    { path:'componente1/:id',component:FooterComponent},
+    {  path:'componente2/:id/:titulo',component:Footer2Component},
+    {  path:'**',component:BodyComponent}
+]
+
+---------------
+
+export class FooterComponent implements OnInit {
+//Para recibir el parametro de URL creamos 2 paramar de routeo  ActivateRoute , y Router en el constructor
+//Imporrt Router, ActivatedRoute  de @angular/router
+  constructor(private activateRoute :ActivatedRoute, private router :Router) { 
+
+  }
+
+  ngOnInit(): void {
+    this.activateRoute.params.subscribe( item => {
+      if(item["id"] != null){
+          console.log('El parametro recibido es ...'+ item["id"]);
+      }
+    });
+  }
+
+}
